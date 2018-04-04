@@ -31,15 +31,17 @@ The following is an example of the analysis info file:
 **QCC_folder =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/QCC_file
 
 ------------------------------------------------------------------------------------------------------
+<br>
 
-The following is the explanation of the lines within the analysis info file:   
+The following is an explanation of the lines within the analysis info file:  
+
 ------------------------------------------------------------------------------------------------------
 **project_location =** *\<path to directory of the analysis\>*   
 **rawCELs_folder =** *\<path to the raw CEL files folder\>*    
 **QCC_folder =** *\<path to the QCC file folder\>*    
     
  ------------------------------------------------------------------------------------------------------  
-<br>   
+   
 
 #### QCC file   
 The QCC file is used to define group membership for probesets on a chip (typically different quality assessment groups), enumerate what individual probeset values should be written to CHP file headers and define textual labels for probesets for genotyping and expression arrays and should be specific to the chip/array you are using.    
