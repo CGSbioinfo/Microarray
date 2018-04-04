@@ -33,12 +33,12 @@ The following is an example of the analysis info file:
 ------------------------------------------------------------------------------------------------------
 
 The following is the explanation of the lines within the analysis info file:   
- 
+------------------------------------------------------------------------------------------------------
 **project_location =** *\<path to directory of the analysis\>*   
 **rawCELs_folder =** *\<path to the raw CEL files folder\>*    
 **QCC_folder =** *\<path to the QCC file folder\>*    
     
-   
+ ------------------------------------------------------------------------------------------------------  
 <br>   
 
 #### QCC file   
