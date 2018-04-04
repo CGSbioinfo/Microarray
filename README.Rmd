@@ -43,7 +43,7 @@ The following is an explanation of the lines within the analysis info file:
 **project_location =** *\<path to directory of the analysis\>*   
 **rawCELs_folder =** *\<path to the raw CEL files folder\>*    
 **QCC_folder =** *\<path to the QCC file folder\>*    
-**Normalisation =** *\TRUE or FALSE to perform GCCN-SST normalisation on the raw CEL files\*
+**Normalisation =** *TRUE or FALSE to perform GCCN-SST normalisation on the raw CEL files*
     
  ------------------------------------------------------------------------------------------------------  
    
