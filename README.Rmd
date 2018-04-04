@@ -23,11 +23,14 @@ The analysis info file is a simple .txt file, with each line providing informati
 
 The following is an example of the analysis info file:   
 
-
+----------------------------------------------------------------------------------------------------
 **project_location =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235
+
 **rawCELs_folder =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/cels 
+
 **QCC_folder =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/QCC_file
 
+------------------------------------------------------------------------------------------------------
 
 The following is the explanation of the lines within the analysis info file:   
  
