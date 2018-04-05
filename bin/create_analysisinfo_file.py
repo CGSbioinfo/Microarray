@@ -17,7 +17,7 @@ if __name__ == "__main__": # If this program is being run independently, rather 
     args=parser.parse_args()
 
     output_file_name = args.output_file  # Take the user given output file name or use the default.
-    lines = ["project_location =", "rawCELs_folder =", "QCC_folder =", "Normalization ="]
+    lines = ["project_location =", "rawCELs_folder =", "QCC_folder =", "normalization = TRUE", "data_target = core"]
 
     output_file = open(output_file_name, "w")
 
