@@ -32,7 +32,9 @@ The following is an example of the analysis info file:
 
 **QCC_folder =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/QCC_file
 
-**Normalization =** TRUE
+**normalization =** TRUE
+
+**data_target =** transcript
 
 ------------------------------------------------------------------------------------------------------
 <br>
@@ -43,7 +45,8 @@ The following is an explanation of the lines within the analysis info file:
 **project_location =** *\<path to directory of the analysis\>*   
 **rawCELs_folder =** *\<path to the raw CEL files folder\>*    
 **QCC_folder =** *\<path to the QCC file folder\>*    
-**Normalization =** *TRUE or FALSE to perform GCCN-SST normalization on the raw CEL files*
+**normalization =** *TRUE or FALSE to perform GCCN-SST normalization on the raw CEL files. Default = TRUE*
+**data_target =** *The level at which the RMA normalisation is performed. Options are "transcript" or "probeset". Default = transcript*
     
  ------------------------------------------------------------------------------------------------------  
    
