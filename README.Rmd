@@ -34,7 +34,7 @@ The following is an example of the analysis info file:
 
 **normalization =** TRUE
 
-**data_target =** transcript
+**data_target =** core
 
 ------------------------------------------------------------------------------------------------------
 <br>
@@ -50,7 +50,7 @@ The following is an explanation of the lines within the analysis info file:
 
 **normalization =** *TRUE or FALSE to perform GCCN-SST normalization on the raw CEL files. Default = TRUE*
 
-**data_target =** *The level at which the RMA normalization is performed. Options are "transcript" or "probeset". Default = transcript*
+**data_target =** *The level at which the RMA normalization is performed. Options are "core" or "probeset", which refer to the transcript and probeset level data, respectively. Default = core.*
     
  ------------------------------------------------------------------------------------------------------  
    
