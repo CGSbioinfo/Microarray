@@ -32,6 +32,8 @@ The following is an example of the analysis info file:
 
 **QCC_folder =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/QCC_file
 
+**paired_samples =** TRUE
+
 **normalization =** TRUE
 
 **data_target =** core
@@ -47,6 +49,8 @@ The following is an explanation of the lines within the analysis info file:
 **rawCELs_folder =** *\<path to the raw CEL files folder\>*  
 
 **QCC_folder =** *\<path to the QCC file folder\>*   
+
+**paired_samples=** *TRUE or FALSE whether the samples are paired and a SibShip column is required in the "comparisons.csv" and design matrix.*
 
 **normalization =** *TRUE or FALSE to perform GCCN-SST normalization on the raw CEL files. Default = TRUE*
 
