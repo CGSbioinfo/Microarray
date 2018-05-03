@@ -96,27 +96,27 @@ The following is an explanation of the lines within the analysis info file:
  ------------------------------------------------------------------------------------------------------  
    
 ### Filling in the analysis_info.txt 
-Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma data QC, GEO submissiong folder creation, and group comparisons. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
+Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma normalization, normalized data QC, GEO submission folder creation, and group comparisons. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
 
 
-#### Array files   
+### Array files   
 
-### QCC 
+#### QCC 
 The QCC file is used to define group membership for probesets on a chip (typically different quality assessment groups), enumerate what individual probeset values should be written to CHP file headers and define textual labels for probesets for genotyping and expression arrays and should be specific to the chip/array you are using.   
 
-### PGF 
+#### PGF 
 The probe group file (PGF) give information on what probes are contained within a probeset and information about the probes required for the analysis. 
 
-### CLF 
+#### CLF 
 The CLF (cel layout file) maps probe IDs to a specific location in the CEL file.  
 
 
-#### Sample information and group comparisons
+### Sample information and group comparisons
 In the github Microarray folder, you will see two additional template .cvs files: "sample_info.csv" and "comparisons.csv". Download both template
 
 
 
-#### Standard pipeline command example
+### Standard pipeline command example
 
 **Use the script**: bin/driver.R
 
