@@ -1,0 +1,14 @@
+analysis_directory = /
+rawCELs_folder = /
+Array_info = /
+paired_samples = FALSE
+GCCN-SST_correction = TRUE 
+data_target = core
+QC_raw = TRUE 
+QC_norm = TRUE 
+GEO_output = TRUE
+group_comparisons = TRUE
+report_gen = TRUE
+functional_analysis = TRUE
+samples_to_exclude = None
+control_QC = TRUE
