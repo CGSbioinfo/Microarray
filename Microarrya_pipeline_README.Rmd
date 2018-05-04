@@ -112,7 +112,17 @@ The CLF (cel layout file) maps probe IDs to a specific location in the CEL file.
 
 
 ### Sample information and group comparisons
-In the github Microarray folder, you will see two additional template .cvs files: "sample_info.csv" and "comparisons.csv". Download both template
+In the github Microarray folder, you will see two additional template .cvs files: "sample_info.csv" and "comparisons.csv". Download both templates and save them in the "Analysis folder", keeping their original names. 
+
+**sample_info.csv:**
+This file will have columns **SampleID** and **Group** (and **SibShip** for paired analysis). 
+
+
+**comparisons.csv:**
+This file will have columns **baselineGroup**, **comparisonGroup**, and **Design**. The baselineGroup is normally the WT or control group. List the pairwise comparisons you want to make, using the corresponding group names. Also list the nature of the design as either  "**pairedSamples**" or "**non-pairedSamples**", depending on whether your samples are paired or un-paired. 
+
+
+The following is an example of the sample_info file: 
 
 
 
