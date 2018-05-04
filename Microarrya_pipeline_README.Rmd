@@ -1,5 +1,18 @@
+RnaSeq pipeline
+================
 
-
+-   [Getting Started](#getting-started)
+-   [Running the pipeline](#running-the-pipeline)
+    -   [Analysis info file](#analysis-info-file)
+        -   [Format of the analysis info file](#format-of-the-analysis-info-file)
+        -   [Filling in the analysis info file](#filling-in-the-analysis-info-file)
+        -   [About the array files](#array-files)
+    -   [Sample information and pairwise comparisons](#sample-information-and-group-comparisons)
+-   [Description of the scripts used in the pipeline](#description-of-the-r-scripts)
+-   [Standard pipeline command example](#standard-pipeline-command-example)
+-   [Standard output directories and files](#standard-output-files-running-the-above-command-line)
+    
+    
 ## Getting Started
 1. Create a new folder in cgs-fs3 or any other location with your chosen project name - referred to as the "project folder" in this README.   
 2. Create a "bin/" folder in the project folder.   
@@ -12,7 +25,7 @@
 
 ## Running the pipeline
 
-### 1. Analysis info file
+### Analysis info file
 A central part of the pipeline is the **analysis info** file. It has information about the analysis directory location, the original CEL files folder, the array files folder and additional parameters used throughout the analysis. 
 
 #### Format of the analysis info file
@@ -85,7 +98,7 @@ The following is an explanation of the lines within the analysis info file:
     
  ------------------------------------------------------------------------------------------------------  
    
-### Filling in the analysis_info.txt 
+### Filling in the analysis info file 
 Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma normalization, normalized data QC, GEO submission folder creation, and group comparisons. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
 
 
@@ -168,3 +181,5 @@ $ /usr/bin/Rscript bin/driver.R /mnt/cgs-fs3/SERVICES/Microarrays/GX-A-Tester-xx
 This will run the scripts using the arguments supplied in the "analysis_info.txt" file, which can be opened in a text editor and changed depending on which functions/outputs you require.
 
 <br>   
+
+### Standard output files (running the above command line)
