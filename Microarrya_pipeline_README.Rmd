@@ -136,20 +136,6 @@ FirstGroup  | SecondGroup | pairedSamples
 ------------------------------------------------------------------
 
 
-### Standard pipeline command example
-
-**Use the script**: bin/driver.R
-
-**Command line example**:
-
-```{r, engine = 'bash', eval = FALSE}
-$ /usr/bin/Rscript bin/driver.R /mnt/cgs-fs3/SERVICES/Microarrays/GX-A-Tester-xxx/Analysis/analysis_info.txt
-```
-
-This will run the scripts using the arguments supplied in the "analysis_info.txt" file, which you can be opened in a text editor and changed depending on which functions/outputs you require.
-
-<br>   
-
 
 ### Description of the R scripts
 
@@ -162,8 +148,23 @@ This script should print messages on the command line to inform the user which s
 This is where the functions for plotting all the graphs are stored. All the arguments to run the functions should be given in the driver script. All the control and data QC plots, as well as volcano and expression plots (using the group comparison results) are created using this script.  
 
 #### data_engine.R
-This script holds the functions responsible for: reading in and loading the CEL files, transforming these using the GCCN-SST algorithm, excluding any samples specified in analysis_info.txt, applying RMA normalization and running the pairwise comparisons to give a list of regulated genes.    
+This script holds the functions responsible for: reading in and loading the CEL files, transforming these using the GCCN-SST algorithm, excluding any samples specified in analysis_info.txt, applying RMA normalization and running the pairwise comparisons to give a list of regulated genes. The correct functions are called in the driver script, relating to the arguments given in the analyis info file.    
 
 #### report_engine.R
 If a report needs to be generated, this script is run and should produce an HTML output of an Rmarkdown report, detailing the analysis steps, QC, data plots and results tables. *This script is still to be completed.*
 
+
+
+### Standard pipeline command example
+
+**Use the script**: bin/driver.R
+
+**Command line example**:
+
+```{r, engine = 'bash', eval = FALSE}
+$ /usr/bin/Rscript bin/driver.R /mnt/cgs-fs3/SERVICES/Microarrays/GX-A-Tester-xxx/Analysis/analysis_info.txt
+```
+
+This will run the scripts using the arguments supplied in the "analysis_info.txt" file, which can be opened in a text editor and changed depending on which functions/outputs you require.
+
+<br>   
