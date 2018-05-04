@@ -105,7 +105,7 @@ The CLF (cel layout file) maps probe IDs to a specific location in the CEL file.
 In the github Microarray folder, you will see two additional template .cvs files: "sample_info.csv" and "comparisons.csv". Download both templates and save them in the "Analysis folder", keeping their original names. 
 
 **sample_info.csv:**
-This file will have columns **SampleID** and **Group** (and **SibShip** for paired analysis). 
+This file will have columns **SampleID** and **Group** (and **SibShip** for paired analysis). List the sample names and their corresponding group in the two columns and if the samples are paired, number them accordingly in the SibShip column (as shown in the example below).
 
 
 **comparisons.csv:**
@@ -151,6 +151,19 @@ This will run the scripts using the arguments supplied in the "analysis_info.txt
 <br>   
 
 
+### Description of the R scripts
 
+#### driver.R 
+This script loads all the data processing and graph plotting functions from the other scripts and runs the pipeline according to the arguments given in the analysis_info.txt. By changing the arguments in the analysis info file, the driver.R should automatically run just the chosen analyses/functions.
 
+This script should print messages on the command line to inform the user which stage of the analysis is being run and when plots and tables have been written. 
+
+#### graph_engine.R
+This is where the functions for plotting all the graphs are stored. All the arguments to run the functions should be given in the driver script. All the control and data QC plots, as well as volcano and expression plots (using the group comparison results) are created using this script.  
+
+#### data_engine.R
+This script holds the functions responsible for: reading in and loading the CEL files, transforming these using the GCCN-SST algorithm, excluding any samples specified in analysis_info.txt, applying RMA normalization and running the pairwise comparisons to give a list of regulated genes.    
+
+#### report_engine.R
+If a report needs to be generated, this script is run and should produce an HTML output of an Rmarkdown report, detailing the analysis steps, QC, data plots and results tables. *This script is still to be completed.*
 
