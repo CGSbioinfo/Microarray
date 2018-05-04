@@ -183,3 +183,22 @@ This will run the scripts using the arguments supplied in the "analysis_info.txt
 <br>   
 
 ### Standard output files (running the above command line)
+
+When running the above command using the default settings in the analysis info file, the output folders produced should be those detailed below:
+
+-------------------------------------------------------------------------------------------------------------------------
+**control_QC =** *\< directory containing the RLE, NUSE, bacSpike, polyA and positive_negative control plots, as well as the signal rank table made using the control data\>*  
+
+**GCCN_cels =** *\< directory holding the GCCN_SST transformed cels for each sample \>* 
+
+**GEO_submission =** *\< directory containing the normalized expression matrix and a copy of the raw cels for all samples used in the analysis. This should be suitable for submission to the GEO.\>*
+
+**raw_data_plots =** *\< directory containing the correlation heatmaps, hierarchical clustering, expression boxplots, all groups' PCA, GC content, MA and density plots produced when running the QC on the raw CEL files\>*  
+
+**rma_data_plots =** *\< directory containing the correlation heatmaps, hierarchical clustering, expression boxplots, all groups' PCA, MA and density plots produced when running the QC on the RMA normalized CEL files\>*  
+
+**results =** *\< directory containing the results from the pairwise comparisons, divided into sub-directories: "tables" and "graphs". The "tables" directory holds all the results tables from each pairwise comparison and an overall "summary_comparisons" .csv file, showing the number of differentially expressed genes across all comparisons. The "graphs" directory holds PCA and volcano plots for each set of pairwise comparison groups. Interactive volcano plots are also produced for each comparison group, in comparison-specific sub-directories.\>*
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
