@@ -2,10 +2,10 @@
 title: "Microarray_piepline_README"
   output: 
     github_document:
-    html_preview: true
-    toc: true
-    toc_float: true
-    toc_depth: 4
+      html_preview: true
+      toc: true
+      toc_float: true
+      toc_depth: 4
 author: "Stef Wenlock"
 
 ---
@@ -121,9 +121,29 @@ This file will have columns **SampleID** and **Group** (and **SibShip** for pair
 **comparisons.csv:**
 This file will have columns **baselineGroup**, **comparisonGroup**, and **Design**. The baselineGroup is normally the WT or control group. List the pairwise comparisons you want to make, using the corresponding group names. Also list the nature of the design as either  "**pairedSamples**" or "**non-pairedSamples**", depending on whether your samples are paired or un-paired. 
 
+----------------------------------------------------------------
+*The following is an example of the sample_info file:*
 
-The following is an example of the sample_info file: 
 
+Sample.Name  | Sample.Group | SibShip
+--- | --- | ---
+Sample1  | FirstGroup | 1
+Sample2  | SecondGroup | 1
+Sample3  | FirstGroup | 2
+Sample4  | SecondGroup | 2
+Sample5  | FirstGroup | 3
+Sample6  | SecondGroup | 3
+
+
+--------------------------------------------------------------
+*The following is an example of the comparisons file:*
+
+
+baselineGroup  | comparisonGroup | Design
+--- | --- | ---
+FirstGroup  | SecondGroup | pairedSamples
+
+------------------------------------------------------------------
 
 
 ### Standard pipeline command example
