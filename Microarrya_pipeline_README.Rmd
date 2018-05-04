@@ -1,14 +1,4 @@
----
-title: "Microarray_piepline_README"
-  output: 
-    github_document:
-      html_preview: true
-      toc: true
-      toc_float: true
-      toc_depth: 4
-author: "Stef Wenlock"
 
----
 
 ## Getting Started
 1. Create a new folder in cgs-fs3 or any other location with your chosen project name - referred to as the "project folder" in this README.   
