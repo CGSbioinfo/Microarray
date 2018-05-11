@@ -1,4 +1,4 @@
-RnaSeq pipeline
+Microarray (Affymetrix) pipeline
 ================
 
 -   [Getting Started](#getting-started)
