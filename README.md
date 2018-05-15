@@ -21,6 +21,7 @@ Microarray (Affymetrix) pipeline
 5. In this "Analysis" folder, create two more folders, "Array_files" and "cels"
 6. Copy the corresponding QCC, PGF, and CLF files for your array and species into the "Array_files" folder. 
 7. Copy the **raw** CEL files for each sample into the "cels" folder. 
+8. If you want to automatically generate a report for your analysis, you will also need to download the 'biblio.bib' file and place it inside the 'Analysis' folder, so the report references can be retrieved. 
 
 
 ## Running the pipeline
@@ -39,7 +40,9 @@ The following is an example of the analysis info file:
 
 **rawCELs_folder =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/Analysis/cels 
 
-**Array_info  =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/Analysis/Array_files
+**Array_info =** /mnt/cgs-fs3/SERVICES/Microarrays/GX-Affy/GX-A.Tester-10235/Analysis/Array_files
+
+**paired_samples =** FALSE 
 
 **GCCN-SST_correction =** TRUE
 
@@ -99,7 +102,7 @@ The following is an explanation of the lines within the analysis info file:
  ------------------------------------------------------------------------------------------------------  
    
 ### Filling in the analysis info file 
-Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma normalization, normalized data QC, GEO submission folder creation, and group comparisons. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
+Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma normalization, normalized data QC, GEO submission folder creation, group comparisons and report generation. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
 
 
 ### Array files   
@@ -164,8 +167,11 @@ This is where the functions for plotting all the graphs are stored. All the argu
 This script holds the functions responsible for: reading in and loading the CEL files, transforming these using the GCCN-SST algorithm, excluding any samples specified in analysis_info.txt, applying RMA normalization and running the pairwise comparisons to give a list of regulated genes. The correct functions are called in the driver script, relating to the arguments given in the analyis info file.    
 
 #### report_engine.R
-If a report needs to be generated, this script is run and should produce an HTML output of an Rmarkdown report, detailing the analysis steps, QC, data plots and results tables. *This script is still to be completed.*
+If a report needs to be generated, this script is run and should produce an HTML output of an Rmarkdown report and an Rmd file, detailing the analysis steps, QC, data plots and results tables.
 
+In order to send the report to a customer, who is not able to access our servers, you will need to copy the .Rmd report file, "biblio.bib" file, the "control_QC", "raw_data_plots", "results", and "rma_data_plots" directories into a separate folder e.g. ("N.Testers_reportfiles"). Then open the .Rmd file in Rstudio and press "Knit". This should produce an .html version of the analysis report into your newly created directory (N.Testers_reportfiles), using the plots within that directory.
+
+The folder can now be zipped and sent to the customer, who should be able to see all the required tables and plots within the report and also in the separate folders, should they wish to look at them that way. 
 
 
 ### Standard pipeline command example
@@ -198,6 +204,8 @@ When running the above command using the default settings in the analysis info f
 **rma_data_plots =** *\< directory containing the correlation heatmaps, hierarchical clustering, expression boxplots, all groups' PCA, MA and density plots produced when running the QC on the RMA normalized CEL files\>*  
 
 **results =** *\< directory containing the results from the pairwise comparisons, divided into sub-directories: "tables" and "graphs". The "tables" directory holds all the results tables from each pairwise comparison and an overall "summary_comparisons" .csv file, showing the number of differentially expressed genes across all comparisons. The "graphs" directory holds PCA and volcano plots for each set of pairwise comparison groups. Interactive volcano plots are also produced for each comparison group, in comparison-specific sub-directories.\>*
+
+*\< an .Rmd and .html file will also be produced if report_gen is set to TRUE in analysis_info.txt, titled as the project name followed by "_analysisReport". \>* 
 
 -----------------------------------------------------------------------------------------------------------------------------
 
