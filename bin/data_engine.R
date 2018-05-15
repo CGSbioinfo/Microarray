@@ -131,7 +131,7 @@ RMAnorm <- function(data, target="core"){
 
 
 #### Function to compare groups of data #################################################
-comparison_func=function(paired_design, comparison_groups, data, gene_name_conv=TRUE, target="core"){
+comparison_func=function(paired_design, comparison_groups, data, target="core", gene_name_conv=TRUE){
 
   # Set up the annotation target
   if (target == "core"){

@@ -20,9 +20,10 @@ suppressMessages(require(gplots))
 suppressMessages(require(plotly))
 
 # Source the data and graph engine scripts to enable the functions to be run
-cat("Sourcing the data processing and graph plotting functions...\n")
+cat("Sourcing the data processing, report creation and graph plotting functions...\n")
 source("bin/data_engine.R")
 source("bin/graph_engine.R")
+source("bin/report_engine.R")
 
 
 # Get the analysis info file from the command line argument
@@ -37,15 +38,15 @@ array_info_folder <- as.character(analysis_info$V3[3])
 sample_info <- paste0(analysis_directory,"/sample_info.csv")
 comparisons <- read.csv(file=paste0(analysis_directory,"/comparisons.csv"), header=T)
 target <- as.character(analysis_info$V3[6])
-
+cels_list <- list.files(path=as.character(analysis_info$V3[2]), full.names=TRUE)
 
 ### Create the required output directory for the apt-cel-transformation cel files
-if (analysis_info$V3[7] == TRUE){
+if (analysis_info$V3[5] == TRUE){
   
   cels_dir <- paste0(analysis_directory,"/GCCN_cels")
   
   # Create a cels text file
-  cels_list <- list.files(path=as.character(analysis_info$V3[2]), full.names=TRUE)
+  #cels_list <- list.files(path=as.character(analysis_info$V3[2]), full.names=TRUE)
   cel_data_file <- paste0(analysis_directory,"/cels_list.txt")
   write.table(cels_list, file=cel_data_file, sep="\n", quote=F, row.names=F, col.names="cel_files")
   
@@ -126,6 +127,22 @@ if (run_normQC == TRUE){
   expression_boxplot(rma.data, rma_data_folder, "norm")
 }
 
+# Produce GEO sumbission expression matrix for RMA data and place cel files in folder if GEO_output == TRUE
+GEO_output <- as.character(analysis_info$V3[9])
+GEO_dir <- paste0(analysis_directory,"/GEO_submission")
+
+if (GEO_output == TRUE){
+
+  cat("Creating GEO submissions folder\n")
+  if (dir.exists(GEO_dir)==FALSE){ # If the directory does not exist, create it.
+    dir.create(GEO_dir, recursive=T)
+  }
+  rma_exprs_matrix <- oligo::exprs(rma.data)
+  write.table(file=paste0(GEO_dir,"/rma_expression_matrix.csv"), rma_exprs_matrix, row.names=T, sep=",", quote=F, col.names=NA) #col.names = NA and row.names=T, puts blank name on row.names column
+  system(paste0("cp -r ",cels_dir, " ",GEO_dir))
+
+}
+
 
 # Run comparisons if group_comparisons == TRUE
 paired_samples <- as.character(analysis_info$V3[4])
@@ -152,7 +169,7 @@ if (compareGroups == TRUE){
     } 
     
     cat("Writing results table\n")
-    if (analysis_info$V3[7] == TRUE){
+    if (analysis_info$V3[5] == TRUE){
       write.table(results, file=paste0(results_Tab.output,"/Results_GCCN_SST_",as.character(comparisons[i,1]),"_VS_",as.character(comparisons[i,2]),".csv"), sep=",", row.names = F)
     }else{
       write.table(results, file=paste0(results_Tab.output,"/Results_non-GCCN_SST_",as.character(comparisons[i,1]),"_VS_",as.character(comparisons[i,2]),".csv"), sep=",", row.names = F)
@@ -163,20 +180,48 @@ if (compareGroups == TRUE){
     volcano_plotting(results, results_Graph.output, groups)
 
     # Write significant summary table
-    n_sig_0.05 <- length(subset(results, (results$adj.P.Val>0.05)))
-    n_sig_0.01 <- dim(subset(results, (results$adj.P.Val<0.01)))
+    n_sig_0.05 <- nrow(subset(results, (results$adj.P.Val<0.05)))
+    n_sig_0.01 <- nrow(subset(results, (results$adj.P.Val<0.01)))
     comp<-paste0(groups[1],"_vs_",groups[2])
     #cat(paste0(n_comp," ",comp, " ",n_sig_0.05," ",n_sig_0.01,"\n"))
 
     if (first_comp){
-      summary_sig[n_comp,]<-c(comp,n_sig_0.05,n_sig_0.01, nrow(results))
+      summary_sig[n_comp,]<-c(comp,n_sig_0.05,n_sig_0.01, dim(results)[1])
       first_comp=FALSE
     }else{
-      summary_sig<-rbind(summary_sig, c(comp, n_sig_0.05, n_sig_0.01, nrow(results)))
+      summary_sig<-rbind(summary_sig, c(comp, n_sig_0.05, n_sig_0.01, dim(results)[1]))
     }
   }
   print(summary_sig)
   write.table(file=paste0(results_Tab.output, "/summary_comparisons.csv"),summary_sig, row.names = FALSE, sep=",", quote=FALSE)
 }
 
+
+
+# Create report if 'report_gen' == TRUE
+# Call functions from the report_engine.R
+
+array_type1 <- strsplit(cels_list[1], "_\\(")
+array_type2 <- gsub(array_type1[[1]][2], pattern=")_.*", replacement="")
+array_type <- gsub(array_type2, pattern="_", replacement=" ")
+
+if(analysis_info$V3[11] == TRUE){
   
+  project_folder <- strsplit((levels(analysis_directory)[1]),"/Analysis")
+  bin_folder <- paste0(project_folder,"/bin")
+  x <- strsplit(bin_folder,"/")  # Split the path to get the project name
+  path_length <- length(x[[1]])
+  project_name <- x[[1]][path_length-1] # Take the second last element of the path as project name
+  
+  report_name <- paste0(analysis_directory,"/",project_name,"_analysisReport.Rmd")
+  unique_groups <- unique(raw.data$Sample.Group) # To get the group names to retrieve correct plots
+  
+  # Call the report generation function
+  # Need to give it the current working directory and then remove the /mnt/ path from everything
+  # As was done with the link to the interactive volcano and results 
+  # So it will work without being on this server
+  report_generation(report_name, array_type, project_name, project_folder, unique_groups, comparisons)
+  
+}
+
+

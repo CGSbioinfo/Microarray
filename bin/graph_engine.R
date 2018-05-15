@@ -180,10 +180,10 @@ MA_plotting=function(data, output_dir, type_of_data){
       cat("Plotting MA data for samples in: ", all_groups[i], "\n")
 
         if (ncol(data.s)>3){   # If there are more than 3 samples
-        png(file=paste0(output_dir,"/MAplot_", all_groups[i],"_",type_of_data,"_data.png",sep=""),width = 1000, height=1800)
+        png(file=paste0(output_dir,"/MAplot_", type_of_data,"_",all_groups[i],".png",sep=""),width = 1000, height=1800)
         par(mfrow=c(5,3))
       } else {
-        png(file=paste0(output_dir,"/MAplot_", all_groups[i],"_",type_of_data,"_data.png",sep=""),width = 1000, height=400)
+        png(file=paste0(output_dir,"/MAplot_", type_of_data,"_",all_groups[i],".png",sep=""),width = 1000, height=400)
         par(mfrow=c(1,3))
       }
       for (j in 1:length(sampleNames(data.s))){
@@ -251,7 +251,7 @@ GC_content_plots=function(data, output_dir){
           dev.off()
         }
         graph_n=current_n
-        png(file=paste0(output_dir,"/GCContent_",graph_n,".jpg"),width = 480, height=480)
+        png(file=paste0(output_dir,"/GCContent_",graph_n,".png"),width = 480, height=480)
         par(mfrow=c(2,2))
         plot(y=pmsLog2[,i], x=GCcontent, main=paste("GC content ",sampleNames(data)[i]), xlab="GC frequency", ylab="Intensity" )
       }
@@ -269,11 +269,11 @@ clust_and_heatmap_plots=function(data, output_dir, type_of_data){
 
   cat("Plotting the correlation heat maps\n")
   cor_mat<-cor(oligo::exprs(data))
-  png(file=paste0(output_dir,"/Correlation_heatmap_groups_",type_of_data,".png"), height=15, width=20, units="cm", res=100)
+  png(file=paste0(output_dir,"/Correlation_heatmap_",type_of_data,"_groups.png"), height=15, width=20, units="cm", res=100)
   heatmap.2(cor_mat, trace="none", labRow=pData(data)$Sample.Group, cexRow=1.2, cexCol=1.2, margin=c(6,8))
   dev.off()
 
-  png(file=paste0(output_dir,"/Correlation_heatmap_samples_",type_of_data,".png"), height=15, width=20, units="cm", res=100)
+  png(file=paste0(output_dir,"/Correlation_heatmap_",type_of_data,"_samples.png"), height=15, width=20, units="cm", res=100)
   heatmap.2(cor_mat, trace="none", cexRow=1.2, cexCol=1.2, margin=c(6,8))
   dev.off()
 
@@ -304,9 +304,9 @@ expression_boxplot=function(data, output_dir, type_of_data){
   cat("Plotting the expression box plots\n")
   png(file=paste0(output_dir,"/expression_boxplot_",type_of_data,".png"), width=780)
   if (class(data)[1]=="GeneFeatureSet"){
-    plot <- boxplot(data, which="all", main="Boxplot of the expression  values (log2 intensities) for all samples")
+    plot <- boxplot(data, which="all", main="Boxplot of the expression  values (log2 intensities) for all samples", las=2)
   }else{                   # If using a Clariom array, the class is an expression feature set
-     plot <- boxplot(data, main="Boxplot of the expression  values (log2 intensities) for all samples")
+     plot <- boxplot(data, main="Boxplot of the expression  values (log2 intensities) for all samples", las=2)
   }
   dev.off()
 }
