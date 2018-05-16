@@ -1,2 +1,0 @@
-## Technical QC report {.tabset}
-This section focuses on the technical aspect of the arrays, using controls plots check if the data generated is of good quality.
