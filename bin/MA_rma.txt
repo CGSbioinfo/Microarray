@@ -1,2 +1,0 @@
-### Normalised data {.tabset}
-The normalised MA plot show that the spread of the data is reduced after the normalisation, however it is still fairly prevalent at the low range of intensities. The data is generally noiser in the lower intensity range.
