@@ -1,2 +1,0 @@
-### PolyA spike control
-This control consists of the set of polyadenylated RNA spikes (Lys, Phe, Thr, and Dap). This control category is useful to identify problems with the target preparation. Metrics in this category will have more variability than other categories (i.e., positive controls, all probe-sets) due to the limited number of spikes and probe-sets for this category. If the polyA spikes display the expected rank order (Lys<Phe<Thr<Dap) then the problem is likely to be with the RNA sample or the target preparation. 
