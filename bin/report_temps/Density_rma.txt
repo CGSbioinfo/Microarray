@@ -1,0 +1,2 @@
+### Density plot normalised data {.tabset}
+The normalisation process is working well, as most of the samples have very similar distribution of intensity after normalisation. The data are normalised per individual group in order to assess the quality of the data on per-group basis.
