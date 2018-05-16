@@ -1,2 +1,0 @@
-### BAC spike control
-This control uses BAC spikes, they hybridize to the pre-labeled bacterial spike controls (BioB, BioC, BioD, and Cre). This control is useful to identify problems with the hybridization and/or chip. Metrics in this control category will have more variability than other categories (i.e., positive controls) due to the limited number of spikes and probe-sets used. If the bacterial spikes display the expected rank order (BioB<BioC<BioD<Cre), then the problem is likely to be prior to the hybridization phase. 
