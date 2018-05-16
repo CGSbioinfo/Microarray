@@ -1,0 +1,31 @@
+# Comparisons
+## How to interpret your results
+This section contains information about the comparisons performed.
+The data for the groups to compare are first extracted from the main raw data and then the normalisation and filtering procedures are applied, as described above, but only on the groups being compared. This is done in order to avoid having samples not related to the comparison influencing the normalisation and the number of probes being adjusted by the multiple testing correction. The higher the number of probes in the comparisons, the greater the correction and therefore having too many probes might reduce the power of the analysis. The filtering will ensure that at least one of the groups has expression levels above the median of the signal in both groups.
+We regenerate the hierarchical clustering and PCA clustering for the groups being compared. A summary table is generated (see below) to give an overview of the results. For each comparison, a table with the top 10 genes is displayed along with a volcano plot. The volcano plot is useful to get an overview of the level of change and the level of significance. The x axis shows the level of change (the fold change (log2 scale)), while the y axis represents the significance (-log10(p-value)). A direct link to the table is provided for each comparison.
+
+To work on the results there are two important columns to use, logFC and adj.pvalue. The adj.pvalue contains the p-value corrected for multiple testing using the False Dicovery Rate (FDR). The p.value column should **not** be used as it is not corrected for multiple testing, resulting in a large number of false positives. The adjusted p-value should be used as a primary filtering column. If there are still too many results after filtering using "classic" levels (0.05 or 0.01) consider lowering it further or using the logFC column as a secondary filter to look at the higher rates of change in your data.
+The logFC represents the log in base 2 of the fold change. A value of 1 is equivalent to a change of 2 fold, 2 is 4 fold, 3 is 8, etc... Using the value as a power of 2 gives you the *real* fold change.
+If there are still a large number of probes to study, it is recommended to take a functional approach to analyse the results. The aim of a functional analysis is to group genes according to function/pathways in order to reduce the complexity of the set. For this, Gene Ontology (GO) tools or pathway finder can be used.
+A note on the p-value: in some cases the adjusted p-value will have the same value for several probes, which might look like an error has occurred during the correction. This can happen as a results of how the correction is performed.
+The correction steps are as follows:
+
+1) Sort the p-values from low (rank 1) to high (rank N, with N the number of comparisons performed).
+2) Multiply the p-value by N.
+3) Divide the p-value by its rank.
+4) Check that the rank is kept.
+
+The last point is the reason why adjusted p-values can share the same value across multiple probes; if the ranks are not kept and a higher ranked probe ends up with a lower adjusted p-value than a lower rank probe, the lower value of the higher ranked probe will also be used for the lower ranked p-value.
+
+## Comparison summary
+```{r echo=FALSE, results='asis'}
+
+library(knitr)
+
+results<-read.csv("results/tables/summary_comparisons.csv", header=T)
+
+kable(results, caption="Summary of the comparisons")
+
+```
+
+## Individual comparisons {.tabset}

@@ -1,0 +1,2 @@
+## GC content (intensity dependance) plots {.tabset}
+This quality control step ensures that the GCCN-SST transformation [@GCCN] of the raw CEL files has worked efficiently and that no probe-sets are GC-biased (being overly attracted to GC rich regions). All samples should have a similar GC content plot. 

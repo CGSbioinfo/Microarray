@@ -1,0 +1,5 @@
+## Density plots {.tabset}
+The density plot represents the distribution of the intensity by plotting the intensities on the x axis against the frequency on the y axis, it is a less schematic representation of the distribution of the intensities. The distribution should be fairly similar for all the arrays of the same group. The density plot are generated for the raw and normalised data for each specific group.
+
+###Density plot raw data {.tabset}
+Overall the density distributions display some variability in the intensity pattern but nothing too unexpected given the quality of the samples. These type of variations should be corrected by the normalisation.

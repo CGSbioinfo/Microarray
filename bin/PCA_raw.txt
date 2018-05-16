@@ -1,0 +1,7 @@
+# Sample group QC
+In this section the relationships between the samples are assessed. We generate multi-dimensional scaling and hierarchical clustering to look at how the samples relate to their group and how the groups relate to each other. This relationship will be assessed before and after RMA normalisation.
+
+## Principal component clustering
+PCA clustering clusters the samples in two dimensions (or more) instead of one, decomposing the variance into several components. Two graphs are generated, one with 2 dimensions and one with 3 dimensions. PCA can identify sources of variation potentially missed by relying on hierachical clustering alone. Note that individual MDS clustering is available for each group in raw_data_plots_folder for the raw data and after normalisation in the rma_data_plots folder.
+
+### Raw data {.tabset}

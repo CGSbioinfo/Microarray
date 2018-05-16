@@ -1,0 +1,4 @@
+## Hierarchical clustering
+Hierarchical clustering is use to plot the distance between samples, calculated based on their expression values. Hierarchical clustering should show that each sample clusters within their replicate group. This can be used to spot potential samples swaps. If all the groups are mixed together, it is an indication that there might be little change between the groups.
+
+### Raw data

@@ -1,0 +1,2 @@
+### RLE boxplot
+The Relative Log Expression (RLE) values are calculated for each probe-set by taking the ratio between the expression of a probe-set and the median expression of this probe-set across all the arrays of the experiment. It is assumed that the majority of a probe-set will have similar levels across the arrays, so the ratio should be centered on 0 on the log scale. If the boxplots are not centered on 0 or have a different spread compare to the other samples, it is a sign of low quality.

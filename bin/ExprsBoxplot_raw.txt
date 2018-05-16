@@ -1,0 +1,4 @@
+## Expression boxplots {.tabset}
+The expression box plots represent the distribution of the intensity by plotting all the samples in the analysis on the x axis against their log2 intensity values on the y axis. The box plot spread should be fairly similar for all samples. The expression plots are generated using raw and normalised data for all samples in all groups.
+
+### Expression  boxplot raw data
