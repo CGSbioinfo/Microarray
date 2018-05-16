@@ -102,7 +102,7 @@ The following is an explanation of the lines within the analysis info file:
  ------------------------------------------------------------------------------------------------------  
    
 ### Filling in the analysis info file 
-Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma normalization, normalized data QC, GEO submission folder creation, group comparisons and report generation. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
+Once you have downloaded the analysis_info.txt, fill in the correct arguments. **The arguments given on each line dictates which functions are run in the script.** Using the default arguments will allow you to run the pipeline from start to finish, which will mean running: GCCN-SST correction on the raw CELs, control QC, raw data QC, rma normalization, filtering (so that at least half the samples have over the median intensity value), normalized data QC, GEO submission folder creation, group comparisons and report generation. This should be suitable for most microarray analyses. In order to do this you will need to supply the correct array files, sample_info file and comparisons file (see below sections). 
 
 
 ### Array files   
