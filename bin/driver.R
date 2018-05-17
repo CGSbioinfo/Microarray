@@ -66,6 +66,11 @@ if (analysis_info$V3[13]== "None"){
    cat("No samples being excluded\n")
 }else{
   samples_to_remove <- as.character(analysis_info$V3[13])
+  
+  if (grepl("/",samples_to_remove)==TRUE){
+    samples_to_remove <- strsplit(samples_to_remove, "/")[[1]]
+  }  
+  
   raw.data <- exclude_samples(raw.data, samples_to_remove) # Run function to remove samples
 }
 
