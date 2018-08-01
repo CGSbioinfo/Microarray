@@ -98,6 +98,7 @@ load_data=function(cel_folder, sample_info){
 #### Function to exclude samples #########################################################
 exclude_samples=function(data, samples_to_remove){
 
+  samples_to_remove <- strsplit(samples_to_remove, ",")[[1]]
   cat(paste0("Removing: ",samples_to_remove,"\n"))
   new_data <- data[, !(sampleNames(data) %in% samples_to_remove)]
 
