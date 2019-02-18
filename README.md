@@ -94,7 +94,7 @@ The following is an explanation of the lines within the analysis info file:
 
 **functional_analysis =** *TRUE or FALSE to perform functional analysis on the data. Default = TRUE.*
 
-**samples_to_exclude =** *The name of any samples which need to be excluded. Default = None.*
+**samples_to_exclude =** *The name of any samples which need to be excluded. Default = None. Multiple sample names should be separated with "," like 'Sample1,Sample2,Sample3'.*
 
 **control_QC =** *TRUE or FALSE to perform QC on the control data, using the corresponding QCC array file. Default = TRUE.*
 
