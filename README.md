@@ -64,6 +64,8 @@ The following is an example of the analysis info file:
 
 **control_QC =** TRUE
 
+**Batch_correction =** FALSE
+
 ------------------------------------------------------------------------------------------------------
 <br>
 
@@ -98,7 +100,8 @@ The following is an explanation of the lines within the analysis info file:
 
 **control_QC =** *TRUE or FALSE to perform QC on the control data, using the corresponding QCC array file. Default = TRUE.*
 
-    
+**Batch_correction =** *TRUE or FALSE to perform a batch correction (using ComBat: sva) on the data. Default = FALSE. To do this you would need to add the batch information in a 'Batch' column in the sample_info file.*
+ 
  ------------------------------------------------------------------------------------------------------  
    
 ### Filling in the analysis info file 
@@ -121,7 +124,7 @@ The CLF (cel layout file) maps probe IDs to a specific location in the CEL file.
 In the github Microarray folder, you will see two additional template .cvs files: "sample_info.csv" and "comparisons.csv". Download both templates and save them in the "Analysis folder", keeping their original names. 
 
 **sample_info.csv:**
-This file will have columns **SampleID** and **Group** (and **SibShip** for paired analysis). List the sample names and their corresponding group in the two columns and if the samples are paired, number them accordingly in the SibShip column (as shown in the example below).
+This file will have columns **SampleID** and **Group** (and **SibShip** for paired analysis, with **Batch** for batch effects). List the sample names and their corresponding group in the two columns and if the samples are paired, number them accordingly in the SibShip column (as shown in the example below).
 
 
 **comparisons.csv:**
@@ -131,14 +134,14 @@ This file will have columns **baselineGroup**, **comparisonGroup**, and **Design
 *The following is an example of the sample_info file:*
 
 
-Sample.Name  | Sample.Group | SibShip
---- | --- | ---
-Sample1  | FirstGroup | 1
-Sample2  | SecondGroup | 1
-Sample3  | FirstGroup | 2
-Sample4  | SecondGroup | 2
-Sample5  | FirstGroup | 3
-Sample6  | SecondGroup | 3
+Sample.Name  | Sample.Group | SibShip | Batch
+--- | --- | --- | ---
+Sample1  | FirstGroup | 1 | 1
+Sample2  | SecondGroup | 1 | 1
+Sample3  | FirstGroup | 2 | 2
+Sample4  | SecondGroup | 2 | 2
+Sample5  | FirstGroup | 3 | 1
+Sample6  | SecondGroup | 3 | 1
 
 
 --------------------------------------------------------------
@@ -164,7 +167,7 @@ This script should print messages on the command line to inform the user which s
 This is where the functions for plotting all the graphs are stored. All the arguments to run the functions should be given in the driver script. All the control and data QC plots, as well as volcano and expression plots (using the group comparison results) are created using this script.  
 
 #### data_engine.R
-This script holds the functions responsible for: reading in and loading the CEL files, transforming these using the GCCN-SST algorithm, excluding any samples specified in analysis_info.txt, applying RMA normalization and running the pairwise comparisons to give a list of regulated genes. The correct functions are called in the driver script, relating to the arguments given in the analyis info file.    
+This script holds the functions responsible for: reading in and loading the CEL files, transforming these using the GCCN-SST algorithm, excluding any samples specified in analysis_info.txt, applying RMA normalization, calculating batch effects and corrections and running the pairwise comparisons to give a list of regulated genes. The correct functions are called in the driver script, relating to the arguments given in the analyis info file.    
 
 #### report_engine.R
 If a report needs to be generated, this script is run and should produce an HTML output of an Rmarkdown report and an Rmd file, detailing the analysis steps, QC, data plots and results tables.
