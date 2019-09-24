@@ -12,3 +12,4 @@ report_gen = TRUE
 functional_analysis = TRUE
 samples_to_exclude = None
 control_QC = TRUE
+Batch_correction = FALSE
