@@ -6,6 +6,7 @@ suppressMessages(require(oligo))
 suppressMessages(require(pd.hugene.2.1.st))
 suppressMessages(require(pd.mogene.2.1.st))
 suppressMessages(require(genefilter))
+suppressMessages(require(sva))
 
 
 #### Function to run apt-cel-transformer  #################################################
@@ -249,3 +250,45 @@ GeneNameChange <- function(x_table){
 
 
 
+
+
+#### Function to calculate and apply a batch correction using ComBat
+BatchCorrect=function(norm_data, paired_design){
+  cat("Batch function:\n")
+
+  batch_info <- pData(norm_data)$Batch
+  
+  error_raised = FALSE
+  if (is.null(batch_info)){
+    cat("Sample info file does not contain batch information. Please add a 'Batch' column to the sample info file.\n")
+    error_raised = TRUE
+  }
+  
+  if(!error_raised){   # As long as the batch information is present in the file, continue
+    cat("Batch information found\n")
+    
+    if (paired_design == TRUE){  # Include the SibShip data in the design matrix
+      mod <- model.matrix(~pData(norm_data)$SibShip+pData(norm_data)$Sample.Group)
+      cat("Design is PAIRED\n")
+    }else{
+      mod <- model.matrix(~pData(norm_data)$Sample.Group)
+      cat("Design is NOT PAIRED\n")
+    }
+    #print(mod)
+    norm_data_eset<-ComBat(exprs(norm_data), mod=mod, batch=pData(norm_data)$Batch)
+    #cat("Combat output:\n")
+    #print(head(norm_data_eset))
+    #cat("original RMA data:\n")
+    #print(head(exprs(norm_data)))
+  
+  }
+
+  exprs(norm_data) <- norm_data_eset
+  x <- norm_data
+  return(x)
+
+}
+
+
+######### END of function ################################################################
+##########################################################################################

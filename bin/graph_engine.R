@@ -56,10 +56,10 @@ pca_plot_pairs_noshape=function(x, plot_name, column_col, log=FALSE){
 }
 
 #### SINGLE
-   pca_plot_single_noshape=function(x, pcs, col, percentVar){
+  pca_plot_single_noshape=function(x, pcs, col, percentVar){
   plus_margin=diff(range(x[,pcs[1]]))/6
   plot=ggplot(as.data.frame(x), aes_string(x=pcs[1], y=pcs[2], col=col)) +
-    geom_point(size=3) +
+    geom_point(size=3) + #geom_text(aes(label=rownames(x)))+
     xlab(paste0(pcs[1],' ', percentVar[pcs[1]], "%")) + ylab(paste0(pcs[2], ' ', percentVar[pcs[2]], "%")) +
     ggtitle(paste0(pcs[1],' vs ',pcs[2])) +
     theme(plot.margin= unit(c(1, 1, 1, 1), "cm"),

@@ -112,6 +112,13 @@ if (run_controlQC == TRUE) {
 ### Run RMA normalization
 rma.data <- RMAnorm(raw.data, target)
 
+### Batch correction
+Batch_correct <-as.character(analysis_info$V3[15])
+
+if (Batch_correct == TRUE){
+rma.data <- BatchCorrect(rma.data, analysis_info$V3[4])
+}
+
 
 # Run graph functions to produce rma normalized data plots - if QC_norm == TRUE
 run_normQC <- as.character(analysis_info$V3[8])
